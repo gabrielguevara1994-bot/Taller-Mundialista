@@ -1,0 +1,151 @@
+/* RESET BÁSICO Y VARIABLES */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+:root {
+    --primary-color: #0d1b2a;
+    --accent-gold: #ffb703;
+    --accent-red: #e63946;
+    --accent-teal: #00f5d4;
+    --text-light: #ffffff;
+    --card-bg: rgba(255, 255, 255, 0.07);
+}
+
+body {
+    background: linear-gradient(135deg, #050508 0%, #0d1f36 50%, #1a0826 100%);
+    color: var(--text-light);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ENCABEZADO ESTILO MUNDIAL */
+.header {
+    text-align: center;
+    padding: 2.5rem 1rem 1.5rem;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.world-cup-text {
+    font-weight: 900;
+    font-size: 1.8rem;
+    letter-spacing: 3px;
+    background: linear-gradient(90deg, #fff, var(--accent-teal));
+    background-clip: text;                  /* Propiedad estándar */
+    -webkit-background-clip: text;          /* Para compatibilidad WebKit */
+    -webkit-text-fill-color: transparent;
+}
+
+.year-text {
+    font-weight: 900;
+    font-size: 2.2rem;
+    color: var(--accent-gold);
+    text-shadow: 0 0 12px rgba(255, 183, 3, 0.5);
+}
+
+.subtitle {
+    margin-top: 0.3rem;
+    font-size: 0.9rem;
+    letter-spacing: 5px;
+    color: #a0aab8;
+    text-transform: uppercase;
+}
+
+/* CONTENEDOR PRINCIPAL Y TARJETA DE GRUPO */
+.container {
+    width: 90%;
+    max-width: 900px;
+    margin: 1rem auto 3rem;
+}
+
+.group-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.group-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+}
+
+.group-header h2 {
+    font-size: 2.5rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    color: var(--accent-gold);
+    text-transform: uppercase;
+}
+
+/* REJILLA DE EQUIPOS */
+.teams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.5rem;
+}
+
+.team-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.team-card:hover {
+    transform: translateY(-8px);
+    background: rgba(255, 255, 255, 0.12);
+    border-color: var(--accent-teal);
+    box-shadow: 0 10px 25px rgba(0, 245, 212, 0.2);
+}
+
+/* CONTENEDOR DE BANDERAS E IMÁGENES */
+.flag-container {
+    width: 100px;
+    height: 65px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    margin-bottom: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.flag-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.team-name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-align: center;
+    color: var(--text-light);
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    .world-cup-text { font-size: 1.3rem; }
+    .year-text { font-size: 1.6rem; }
+    .group-header h2 { font-size: 1.8rem; }
+    .teams-grid { grid-template-columns: repeat(2, 1fr); }
+}
