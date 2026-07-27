@@ -1,4 +1,4 @@
-/* RESET BÁSICO Y VARIABLES */
+/* RESET Y VARIABLES */
 * {
     margin: 0;
     padding: 0;
@@ -9,7 +9,6 @@
 :root {
     --primary-color: #0d1b2a;
     --accent-gold: #ffb703;
-    --accent-red: #e63946;
     --accent-teal: #00f5d4;
     --text-light: #ffffff;
     --card-bg: rgba(255, 255, 255, 0.07);
@@ -24,7 +23,7 @@ body {
     align-items: center;
 }
 
-/* ENCABEZADO ESTILO MUNDIAL */
+/* ENCABEZADO */
 .header {
     text-align: center;
     padding: 2.5rem 1rem 1.5rem;
@@ -42,8 +41,8 @@ body {
     font-size: 1.8rem;
     letter-spacing: 3px;
     background: linear-gradient(90deg, #fff, var(--accent-teal));
-    background-clip: text;                  /* Propiedad estándar */
-    -webkit-background-clip: text;          /* Para compatibilidad WebKit */
+    background-clip: text;
+    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -62,7 +61,7 @@ body {
     text-transform: uppercase;
 }
 
-/* CONTENEDOR PRINCIPAL Y TARJETA DE GRUPO */
+/* CONTENEDOR Y TARJETA DEL GRUPO */
 .container {
     width: 90%;
     max-width: 900px;
@@ -118,7 +117,6 @@ body {
     box-shadow: 0 10px 25px rgba(0, 245, 212, 0.2);
 }
 
-/* CONTENEDOR DE BANDERAS E IMÁGENES */
 .flag-container {
     width: 100px;
     height: 65px;
@@ -139,15 +137,6 @@ body {
     font-size: 1.1rem;
     font-weight: 600;
     text-align: center;
-    color: var(--text-light);
-}
-
-/* RESPONSIVE */
-@media (max-width: 600px) {
-    .world-cup-text { font-size: 1.3rem; }
-    .year-text { font-size: 1.6rem; }
-    .group-header h2 { font-size: 1.8rem; }
-    .teams-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* SECCIÓN DE DETALLES */
@@ -172,7 +161,6 @@ body {
     font-size: 0.95rem;
 }
 
-/* TARJETAS DE SELECCIÓN */
 .team-detail-card {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.12);
@@ -214,7 +202,7 @@ body {
     color: #fff;
 }
 
-/* SEDES Y ESTADIOS */
+/* SEDES, FOTOS Y CURIOSIDADES */
 .match-info-box {
     background: rgba(0, 245, 212, 0.1);
     border-left: 4px solid var(--accent-teal);
@@ -224,7 +212,6 @@ body {
     font-size: 0.95rem;
 }
 
-/* IMÁGENES DE CAMPEONES */
 .champion-photo-box {
     text-align: center;
     margin: 1.5rem 0;
@@ -247,7 +234,6 @@ body {
     font-weight: 600;
 }
 
-/* INFORMACIÓN Y GRID */
 .info-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -271,7 +257,6 @@ body {
     font-weight: 800;
 }
 
-/* CURIOSIDADES */
 .curiosity-box {
     background: linear-gradient(90deg, rgba(255, 183, 3, 0.15), rgba(0, 0, 0, 0.3));
     border: 1px dashed var(--accent-gold);
@@ -293,7 +278,7 @@ body {
     line-height: 1.4;
 }
 
-/* JUGADORES CONVOCADOS */
+/* PLANTILLA DE CONVOCADOS */
 .squad-box {
     margin-top: 1.5rem;
     background: rgba(0, 0, 0, 0.2);
@@ -315,4 +300,12 @@ body {
     border-radius: 6px;
     font-size: 0.85rem;
     border-left: 3px solid var(--accent-teal);
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    .world-cup-text { font-size: 1.3rem; }
+    .year-text { font-size: 1.6rem; }
+    .group-header h2 { font-size: 1.8rem; }
+    .teams-grid { grid-template-columns: repeat(2, 1fr); }
 }
