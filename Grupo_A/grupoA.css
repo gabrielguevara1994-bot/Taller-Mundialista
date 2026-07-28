@@ -1,0 +1,358 @@
+/* RESET Y VARIABLES */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+:root {
+    --primary-color:#0d1b2a;
+    --accent-gold:#ffb703;
+    --accent-teal:#00f5d4;
+    --text-light:#ffffff;
+    --card-bg:rgba(255,255,255,0.07);
+}
+
+body {
+    background:linear-gradient(
+        135deg,
+        #050508 0%,
+        #0d1f36 50%,
+        #1a0826 100%
+    );
+    color:var(--text-light);
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+/* HEADER */
+
+.header {
+    text-align:center;
+    padding:2.5rem 1rem 1.5rem;
+}
+
+.logo-container {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:12px;
+}
+
+.world-cup-text {
+    font-weight:900;
+    font-size:1.8rem;
+    letter-spacing:3px;
+    background:linear-gradient(
+        90deg,
+        #fff,
+        var(--accent-teal)
+    );
+    background-clip:text;
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+
+.year-text {
+    font-weight:900;
+    font-size:2.2rem;
+    color:var(--accent-gold);
+    text-shadow:
+    0 0 12px rgba(255,183,3,.5);
+}
+
+.subtitle {
+    margin-top:.3rem;
+    font-size:.9rem;
+    letter-spacing:5px;
+    color:#a0aab8;
+    text-transform:uppercase;
+}
+
+/* CONTENEDOR */
+
+.container {
+    width:90%;
+    max-width:900px;
+    margin:1rem auto 3rem;
+}
+
+/* TARJETA GRUPO */
+
+.group-card {
+    background:var(--card-bg);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:20px;
+    padding:2rem;
+    box-shadow:
+    0 20px 40px rgba(0,0,0,.5);
+}
+
+.group-header {
+    text-align:center;
+    margin-bottom:2rem;
+    border-bottom:
+    2px solid rgba(255,255,255,.1);
+    padding-bottom:1rem;
+}
+
+.group-header h2 {
+    font-size:2.5rem;
+    font-weight:900;
+    letter-spacing:2px;
+    color:var(--accent-gold);
+    text-transform:uppercase;
+}
+
+/* EQUIPOS */
+
+.teams-grid {
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(180px,1fr));
+    gap:1.5rem;
+}
+
+.team-card-link {
+    text-decoration:none;
+    color:white;
+}
+
+.team-card {
+    background:
+    rgba(255,255,255,.05);
+    border:
+    1px solid rgba(255,255,255,.08);
+    border-radius:15px;
+    padding:1.5rem 1rem;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    transition:.3s;
+}
+
+.team-card:hover {
+    transform:translateY(-8px);
+    background:
+    rgba(255,255,255,.12);
+    border-color:
+    var(--accent-teal);
+    box-shadow:
+    0 10px 25px rgba(0,245,212,.2);
+}
+
+.flag-container {
+    width:100px;
+    height:65px;
+    border-radius:8px;
+    overflow:hidden;
+    margin-bottom:1rem;
+    box-shadow:
+    0 4px 10px rgba(0,0,0,.4);
+}
+
+.flag-img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.team-name {
+    font-size:1.1rem;
+    font-weight:600;
+    text-align:center;
+}
+
+/* DETALLES */
+
+.details-section {
+    margin-top:4rem;
+    width:100%;
+}
+
+.section-title {
+    text-align:center;
+    margin-bottom:2.5rem;
+}
+
+.section-title h2 {
+    font-size:2.2rem;
+    color:var(--accent-gold);
+    font-weight:900;
+}
+
+.section-title p {
+    color:#a0aab8;
+}
+
+.team-detail-card {
+    background:
+    rgba(255,255,255,.05);
+    border:
+    1px solid rgba(255,255,255,.12);
+    border-radius:18px;
+    padding:2rem;
+    margin-bottom:2rem;
+    backdrop-filter:blur(10px);
+}
+
+.team-detail-header {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:1.5rem;
+    border-bottom:
+    1px solid rgba(255,255,255,.1);
+    padding-bottom:.8rem;
+}
+
+.team-detail-header h3 {
+    font-size:1.8rem;
+    font-weight:800;
+}
+
+/* BADGES */
+
+.badge {
+    padding:.4rem 1rem;
+    border-radius:20px;
+    font-size:.85rem;
+    font-weight:700;
+    text-transform:uppercase;
+}
+
+.badge.champion {
+    background:var(--accent-gold);
+    color:#000;
+}
+
+.badge.finalist {
+    background:
+    rgba(255,255,255,.15);
+    color:white;
+}
+
+/* INFORMACIÓN */
+
+.match-info-box {
+    background:
+    rgba(0,245,212,.1);
+    border-left:
+    4px solid var(--accent-teal);
+    padding:.8rem 1.2rem;
+    border-radius:8px;
+    margin-bottom:1.5rem;
+}
+
+.champion-photo-box {
+    text-align:center;
+    margin:1.5rem 0;
+}
+
+.champion-img {
+    width:100%;
+    max-width:500px;
+    height:280px;
+    object-fit:cover;
+    border-radius:12px;
+    border:
+    2px solid var(--accent-gold);
+}
+
+.photo-caption {
+    color:var(--accent-teal);
+    margin-top:.5rem;
+}
+
+.info-grid {
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(250px,1fr));
+    gap:1.5rem;
+}
+
+.info-item h4,
+.squad-box h4 {
+    color:var(--accent-teal);
+    margin-bottom:.5rem;
+    text-transform:uppercase;
+}
+
+.info-item.full-width {
+    grid-column:1/-1;
+}
+
+.gold-text {
+    color:var(--accent-gold);
+    font-weight:800;
+}
+
+/* CURIOSIDAD */
+
+.curiosity-box {
+    background:
+    linear-gradient(
+        90deg,
+        rgba(255,183,3,.15),
+        rgba(0,0,0,.3)
+    );
+    border:
+    1px dashed var(--accent-gold);
+    border-radius:10px;
+    padding:1rem;
+}
+
+.curiosity-box h4 {
+    color:var(--accent-gold);
+}
+
+/* CONVOCADOS */
+
+.squad-box {
+    margin-top:1.5rem;
+    background:
+    rgba(0,0,0,.2);
+    padding:1.2rem;
+    border-radius:12px;
+}
+
+.squad-list {
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fill,minmax(140px,1fr));
+    gap:.6rem;
+    list-style:none;
+}
+
+.squad-list li {
+    background:
+    rgba(255,255,255,.08);
+    padding:.4rem .8rem;
+    border-radius:6px;
+    border-left:
+    3px solid var(--accent-teal);
+}
+
+@media(max-width:600px){
+    .world-cup-text{
+        font-size:1.3rem;
+    }
+
+    .year-text{
+        font-size:1.6rem;
+    }
+
+    .group-header h2{
+        font-size:1.8rem;
+    }
+
+    .teams-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
