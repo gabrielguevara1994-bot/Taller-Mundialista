@@ -44,7 +44,7 @@ cromosMundial.push(
         pais: "México",
         posicion: "Mediocampista",
         urlImagen: "imagenes/jugadores/Edson Álvarez.jpg",
-        urlBandera: "imagenes/banderas/mexico.png",
+        urlBandera: "https://flagcdn.com/w80/mx.png",
         colorFondoHex: "#006847",
         estadisticas: {
             goles: 5,
@@ -60,7 +60,7 @@ cromosMundial.push(
         pais: "México",
         posicion: "Extremo",
         urlImagen: "imagenes/jugadores/hirvingLozano.jpg",
-        urlBandera: "imagenes/banderas/mexico.png",
+        urlBandera: "https://flagcdn.com/w80/mx.png",
         colorFondoHex: "#006847",
         estadisticas: {
             goles: 18,
@@ -76,7 +76,7 @@ cromosMundial.push(
         pais: "Corea del Sur",
         posicion: "Delantero",
         urlImagen: "imagenes/jugadores/Son Heung-min.jpg",
-        urlBandera: "imagenes/banderas/corea-sur.png",
+        urlBandera: "https://flagcdn.com/w80/kr.png",
         colorFondoHex: "#C60C30",
         estadisticas: {
             goles: 51,
@@ -92,7 +92,7 @@ cromosMundial.push(
         pais: "Canadá",
         posicion: "Lateral Izquierdo",
         urlImagen: "imagenes/jugadores/Alphonso Davies.jpg",
-        urlBandera: "imagenes/banderas/canada.png",
+        urlBandera: "https://flagcdn.com/w80/ca.png",
         colorFondoHex: "#D80621",
         estadisticas: {
             goles: 15,
@@ -108,7 +108,7 @@ cromosMundial.push(
         pais: "Suiza",
         posicion: "Mediocampista",
         urlImagen: "imagenes/jugadores/Granit Xhaka.jpg",
-        urlBandera: "imagenes/banderas/suiza.png",
+        urlBandera: "https://flagcdn.com/w80/ch.png",
         colorFondoHex: "#D52B1E",
         estadisticas: {
             goles: 14,
@@ -124,7 +124,7 @@ cromosMundial.push(
         pais: "Qatar",
         posicion: "Delantero",
         urlImagen: "imagenes/jugadores/akram-afif.jpg",
-        urlBandera: "imagenes/banderas/qatar.png",
+        urlBandera: "https://flagcdn.com/w80/qa.png",
         colorFondoHex: "#8A1538",
         estadisticas: {
             goles: 35,
@@ -252,4 +252,118 @@ document.addEventListener("DOMContentLoaded", () => {
     if (document.getElementById("index-jugadores-container")) {
         renderizarJugadoresIndex();
     }
+});
+
+cromosMundial.push(
+    crearJugador({
+        id: 7,
+        nombre: "Lionel Messi",
+        pais: "Argentina",
+        posicion: "Delantero",
+        urlImagen: "Imagenes/Jugadores/messi.jpg",
+        urlBandera: "https://flagcdn.com/w80/ar.png",
+        colorFondoHex: "#75AADB", // Celeste Argentina
+        estadisticas: { goles: 13, partidos: 26 },
+        destacado: true,
+        curiosidad: "Máximo goleador histórico de Argentina y campeón del mundo en Qatar 2022."
+    }),
+    crearJugador({
+        id: 8,
+        nombre: "Lamine Yamal",
+        pais: "España",
+        posicion: "Extremo",
+        urlImagen: "Imagenes/Jugadores/lamineYamale.jpg",
+        urlBandera: "https://flagcdn.com/w80/es.png",
+        colorFondoHex: "#AA151B", // Rojo España
+        estadisticas: { goles: 3, partidos: 14 },
+        destacado: true,
+        curiosidad: "El jugador más joven en debutar y marcar con la selección absoluta de España."
+    }),
+    crearJugador({
+        id: 9,
+        nombre: "Vozinha",
+        pais: "Cabo Verde",
+        posicion: "Portero",
+        urlImagen: "Imagenes/Jugadores/vozina.jpg",
+        urlBandera: "https://flagcdn.com/w80/cv.png",
+        colorFondoHex: "#002B7F", // Azul Cabo Verde
+        estadisticas: { goles: 0, partidos: 65 },
+        destacado: false,
+        curiosidad: "Guardameta histórico y referente del crecimiento futbolístico de Cabo Verde."
+    }),
+    crearJugador({
+        id: 10,
+        nombre: "Federico Valverde",
+        pais: "Uruguay",
+        posicion: "Centrocampista",
+        urlImagen: "Imagenes/Jugadores/valverde.jpg",
+        urlBandera: "https://flagcdn.com/w80/uy.png",
+        colorFondoHex: "#0038A8", // Azul Celeste Uruguay
+        estadisticas: { goles: 7, partidos: 56 },
+        destacado: true,
+        curiosidad: "Conocido como 'El Pajarito', destaca por su gran despliegue físico y potente disparo lejano."
+    }),
+    crearJugador({
+        id: 11,
+        nombre: "Pedri",
+        pais: "España",
+        posicion: "Centrocampista",
+        urlImagen: "Imagenes/Jugadores/pedri.jpg",
+        urlBandera: "https://flagcdn.com/w80/es.png",
+        colorFondoHex: "#AA151B", // Rojo España
+        estadisticas: { goles: 2, partidos: 24 },
+        destacado: false,
+        curiosidad: "Ganador del Golden Boy 2021 y motor de la creación de juego en el mediocampo español."
+    }),
+    crearJugador({
+        id: 12,
+        nombre: "David Alaba",
+        pais: "Austria",
+        posicion: "Defensa",
+        urlImagen: "Imagenes/Jugadores/alaba.jpg",
+        urlBandera: "https://flagcdn.com/w80/at.png",
+        colorFondoHex: "#ED2939", // Rojo Austria
+        estadisticas: { goles: 15, partidos: 105 },
+        destacado: false,
+        curiosidad: "Capitán y figura polivalente que lidera el regreso de Austria a los grandes escenarios."
+    })
+);
+
+// Función para calcular e imprimir el acumulado total de goles de TODOS los jugadores
+function calcularTotalGoles() {
+    // Suma los goles de todos los jugadores presentes en el arreglo global
+    const totalGoles = cromosMundial.reduce((acumulado, jugador) => acumulado + jugador.estadisticas.goles, 0);
+
+    // Busca o crea el contenedor de estadísticas en el HTML
+    let contenedorStats = document.getElementById("total-goles-container");
+    
+    if (!contenedorStats) {
+        contenedorStats = document.createElement("div");
+        contenedorStats.id = "total-goles-container";
+        contenedorStats.className = "stats-summary-box";
+
+        const seccionAlbum = document.querySelector(".album-section, .featured-players-section");
+        if (seccionAlbum) {
+            seccionAlbum.insertBefore(contenedorStats, seccionAlbum.firstChild);
+        }
+    }
+
+    // Inyección dinámica del total general
+    contenedorStats.innerHTML = `
+        <div class="summary-card">
+            ⚡ <span>Total acumulado de goles en el álbum:</span> <strong>${totalGoles} goles</strong>
+        </div>
+    `;
+}
+
+// 3. Modificación del evento inicial para ejecutar el cálculo automáticamente
+document.addEventListener("DOMContentLoaded", () => {
+    if (document.getElementById("cromos-container")) {
+        renderizarAlbum();
+    }
+    if (document.getElementById("index-jugadores-container")) {
+        renderizarJugadoresIndex();
+    }
+    
+    calcularTotalGoles();
 });

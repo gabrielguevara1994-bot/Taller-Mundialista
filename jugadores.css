@@ -179,3 +179,25 @@ body {
     font-size: 0.9rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
+
+.stats-summary-box {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.summary-card {
+    background: rgba(255, 183, 3, 0.15);
+    border: 1px solid var(--accent-gold, #ffb703);
+    color: #ffffff;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    backdrop-filter: blur(8px);
+}
+
+.summary-card strong {
+    color: var(--accent-gold, #ffb703);
+    font-size: 1.1rem;
+    margin-left: 5px;
+}
