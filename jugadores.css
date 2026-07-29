@@ -220,3 +220,42 @@ ANIMACIÓN DE ENTRADA DE LOS CROMOS
     }
 
 }
+
+.filters-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.search-box input,
+.select-box select {
+    background: #1e293b;
+    border: 1px solid #334155;
+    color: #ffffff;
+    padding: 0.75rem 1.25rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.search-box input {
+    min-width: 280px;
+}
+
+.search-box input:focus,
+.select-box select:focus {
+    border-color: #ffb703;
+    box-shadow: 0 0 8px rgba(255, 183, 3, 0.3);
+}
+
+.no-results {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #94a3b8;
+    font-size: 1.1rem;
+    padding: 3rem 0;
+}
