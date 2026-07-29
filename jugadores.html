@@ -33,7 +33,43 @@
                 <h2>CROMOS DEL MUNDIAL</h2>
                 <p>Colección interactiva de figuras</p>
             </div>
+            <main class="container album-section">
+    <div class="section-title">
+        <h2>ÁLBUM DE CROMOS</h2>
+        <p>Colección oficial de jugadores del Mundial 2026</p>
+    </div>
 
+    <!-- BARRA DE HERRAMIENTAS / FILTROS -->
+    <div class="filters-bar">
+        <div class="search-box">
+            <input 
+                type="text" 
+                id="search-input" 
+                placeholder="Buscar por nombre o posición..." 
+                autocomplete="off"
+            >
+        </div>
+        <div class="select-box">
+            <select id="country-select">
+                <option value="todos">Todos los países</option>
+                <!-- Opciones cargadas dinámicamente o predefinidas -->
+                <option value="México">México</option>
+                <option value="Corea del Sur">Corea del Sur</option>
+                <option value="Canadá">Canadá</option>
+                <option value="Suiza">Suiza</option>
+                <option value="Qatar">Qatar</option>
+                <option value="Argentina">Argentina</option>
+                <option value="España">España</option>
+                <option value="Cabo Verde">Cabo Verde</option>
+                <option value="Uruguay">Uruguay</option>
+                <option value="Austria">Austria</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- CONTENEDOR DE CROMOS -->
+    <div id="cromos-container" class="cromos-grid"></div>
+</main>
             <!-- Contenedor dinámico -->
             <div id="cromos-container" class="cromos-grid"></div>
         </section>

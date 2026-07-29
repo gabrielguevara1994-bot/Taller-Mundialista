@@ -367,3 +367,105 @@ document.addEventListener("DOMContentLoaded", () => {
     
     calcularTotalGoles();
 });
+
+// Función genérica para renderizar una lista dada de jugadores
+function renderizarListaJugadores(lista) {
+    const contenedor = document.getElementById("cromos-container");
+    if (!contenedor) return;
+
+    contenedor.innerHTML = "";
+
+    if (lista.length === 0) {
+        contenedor.innerHTML = `<p class="no-results">No se encontraron jugadores que coincidan con los filtros.</p>`;
+        return;
+    }
+
+    lista.forEach((jugador) => {
+        const tarjetaHTML = `
+            <article class="cromo-card ${jugador.destacado ? 'destacado' : ''}" style="--bg-cromo: ${jugador.colorFondoHex};">
+                <header class="cromo-header">
+                    <span class="cromo-id">#${jugador.id}</span>
+                    <img src="${jugador.urlBandera}" alt="Bandera de ${jugador.pais}" class="cromo-flag">
+                </header>
+
+                <div class="cromo-image-container">
+                    <img src="${jugador.urlImagen}" alt="${jugador.nombre}" class="cromo-img" loading="lazy">
+                </div>
+
+                <div class="cromo-info">
+                    <h3 class="cromo-name">${jugador.nombre}</h3>
+                    <p class="cromo-country">${jugador.pais}</p>
+                    <span class="cromo-position">${jugador.posicion}</span>
+
+                    <div class="cromo-stats">
+                        <div class="stat">
+                            <span class="stat-num">${jugador.estadisticas.partidos}</span>
+                            <span class="stat-label">PJ</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-num">${jugador.estadisticas.goles}</span>
+                            <span class="stat-label">Goles</span>
+                        </div>
+                    </div>
+
+                    ${jugador.curiosidad ? `<p class="cromo-trivia">💡 <em>${jugador.curiosidad}</em></p>` : ''}
+                </div>
+            </article>
+        `;
+        contenedor.innerHTML += tarjetaHTML;
+    });
+}
+
+// Función principal de filtrado combinando Búsqueda + Selección de País
+function aplicarFiltros() {
+    const inputSearch = document.getElementById("search-input");
+    const selectCountry = document.getElementById("country-select");
+
+    const textoBusqueda = inputSearch ? inputSearch.value.toLowerCase().trim() : "";
+    const paisSeleccionado = selectCountry ? selectCountry.value : "todos";
+
+    // Uso de función de orden superior .filter()
+    const jugadoresFiltrados = cromosMundial.filter((jugador) => {
+        // Coincidencia por texto (nombre o posición)
+        const coincideTexto = 
+            jugador.nombre.toLowerCase().includes(textoBusqueda) ||
+            jugador.posicion.toLowerCase().includes(textoBusqueda);
+
+        // Coincidencia por país
+        const coincidePais = 
+            paisSeleccionado === "todos" || jugador.pais === paisSeleccionado;
+
+        return coincideTexto && coincidePais;
+    });
+
+    // Renderiza el resultado filtrado
+    renderizarListaJugadores(jugadoresFiltrados);
+}
+
+// Event Listeners e inicialización
+document.addEventListener("DOMContentLoaded", () => {
+    // Renderizado inicial en la página del álbum
+    if (document.getElementById("cromos-container")) {
+        renderizarListaJugadores(cromosMundial);
+
+        // Escuchadores de eventos para filtrado en tiempo real
+        const inputSearch = document.getElementById("search-input");
+        const selectCountry = document.getElementById("country-select");
+
+        if (inputSearch) {
+            inputSearch.addEventListener("input", aplicarFiltros);
+        }
+
+        if (selectCountry) {
+            selectCountry.addEventListener("change", aplicarFiltros);
+        }
+    }
+
+    // Renderizado en portada (index.html)
+    if (document.getElementById("index-jugadores-container")) {
+        renderizarJugadoresIndex();
+    }
+
+    // Cálculo global de goles
+    calcularTotalGoles();
+});
