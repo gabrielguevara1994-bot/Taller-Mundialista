@@ -83,6 +83,7 @@ body {
     padding: 12px;
     box-shadow: 0 10px 25px rgba(0,0,0,0.5);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: aparecerCromo .8s ease;
     display: flex;
     flex-direction: column;
 }
@@ -92,9 +93,9 @@ body {
     box-shadow: 0 0 15px rgba(255, 183, 3, 0.4);
 }
 
-.cromo-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 28px rgba(0, 245, 212, 0.3);
+.cromo-card:hover{
+    transform:translateY(-5px) scale(1.02);
+    box-shadow:0 18px 35px rgba(0,245,212,.35);
 }
 
 .cromo-header {
@@ -200,4 +201,22 @@ body {
     color: var(--accent-gold, #ffb703);
     font-size: 1.1rem;
     margin-left: 5px;
+}
+
+/*=====================================
+ANIMACIÓN DE ENTRADA DE LOS CROMOS
+=====================================*/
+
+@keyframes aparecerCromo {
+
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
 }
