@@ -1,12 +1,12 @@
 /**
  * TALLER MUNDIAL 2026 - ÁLBUM DE CROMOS
- * Módulo Principal / Entorno Base
+ * Sistema de Gamificación y Recompensas (Estudiante F)
  */
 
-// 1. Arreglo global de cromos (Inicialmente vacío)
+// 1. Arreglo global de cromos
 const cromosMundial = [];
 
-// 2. Función fábrica para crear objetos de jugador con estructura estricta
+// 2. Función fábrica para crear objetos con propiedad de desbloqueo
 function crearJugador({
     id,
     nombre,
@@ -17,7 +17,8 @@ function crearJugador({
     colorFondoHex = "#1e293b",
     estadisticas = { goles: 0, partidos: 0 },
     destacado = false,
-    curiosidad = ""
+    curiosidad = "",
+    desbloqueado = false // Estado inicial bloqueado
 }) {
     return {
         id,
@@ -32,12 +33,13 @@ function crearJugador({
             partidos: estadisticas.partidos ?? 0
         },
         destacado: Boolean(destacado),
-        curiosidad 
+        curiosidad,
+        desbloqueado: Boolean(desbloqueado)
     };
 }
 
+// 3. Carga masiva de cromos
 cromosMundial.push(
-
     crearJugador({
         id: 1,
         nombre: "Edson Álvarez",
@@ -46,14 +48,10 @@ cromosMundial.push(
         urlImagen: "imagenes/jugadores/Edson Álvarez.jpg",
         urlBandera: "https://flagcdn.com/w80/mx.png",
         colorFondoHex: "#006847",
-        estadisticas: {
-            goles: 5,
-            partidos: 83
-        },
+        estadisticas: { goles: 5, partidos: 83 },
         destacado: true,
         curiosidad: "Capitán de la selección mexicana y uno de los referentes del mediocampo."
     }),
-
     crearJugador({
         id: 2,
         nombre: "Hirving Lozano",
@@ -62,14 +60,10 @@ cromosMundial.push(
         urlImagen: "imagenes/jugadores/hirvingLozano.jpg",
         urlBandera: "https://flagcdn.com/w80/mx.png",
         colorFondoHex: "#006847",
-        estadisticas: {
-            goles: 18,
-            partidos: 70
-        },
+        estadisticas: { goles: 18, partidos: 70 },
         destacado: true,
         curiosidad: "Anotó el histórico gol con el que México derrotó a Alemania en Rusia 2018."
     }),
-
     crearJugador({
         id: 3,
         nombre: "Son Heung-min",
@@ -78,14 +72,10 @@ cromosMundial.push(
         urlImagen: "imagenes/jugadores/Son Heung-min.jpg",
         urlBandera: "https://flagcdn.com/w80/kr.png",
         colorFondoHex: "#C60C30",
-        estadisticas: {
-            goles: 51,
-            partidos: 135
-        },
+        estadisticas: { goles: 51, partidos: 135 },
         destacado: true,
         curiosidad: "Es el máximo referente del fútbol surcoreano y ha ganado varias distinciones en la Premier League."
     }),
-
     crearJugador({
         id: 4,
         nombre: "Alphonso Davies",
@@ -94,14 +84,10 @@ cromosMundial.push(
         urlImagen: "imagenes/jugadores/Alphonso Davies.jpg",
         urlBandera: "https://flagcdn.com/w80/ca.png",
         colorFondoHex: "#D80621",
-        estadisticas: {
-            goles: 15,
-            partidos: 56
-        },
+        estadisticas: { goles: 15, partidos: 56 },
         destacado: true,
         curiosidad: "Fue el primer canadiense en conquistar la UEFA Champions League."
     }),
-
     crearJugador({
         id: 5,
         nombre: "Granit Xhaka",
@@ -110,14 +96,10 @@ cromosMundial.push(
         urlImagen: "imagenes/jugadores/Granit Xhaka.jpg",
         urlBandera: "https://flagcdn.com/w80/ch.png",
         colorFondoHex: "#D52B1E",
-        estadisticas: {
-            goles: 14,
-            partidos: 137
-        },
+        estadisticas: { goles: 14, partidos: 137 },
         destacado: false,
         curiosidad: "Es uno de los futbolistas con más partidos disputados en la historia de Suiza."
     }),
-
     crearJugador({
         id: 6,
         nombre: "Akram Afif",
@@ -126,143 +108,18 @@ cromosMundial.push(
         urlImagen: "imagenes/jugadores/akram-afif.jpg",
         urlBandera: "https://flagcdn.com/w80/qa.png",
         colorFondoHex: "#8A1538",
-        estadisticas: {
-            goles: 35,
-            partidos: 108
-        },
+        estadisticas: { goles: 35, partidos: 108 },
         destacado: false,
         curiosidad: "Fue elegido el mejor jugador de la Copa Asiática 2023 tras liderar a Qatar hacia el título."
-    })
-
-);
-
-// 3. Función de renderizado inicial mediante .forEach()
-function renderizarAlbum() {
-    const contenedor = document.getElementById("cromos-container");
-
-    if (!contenedor) {
-        console.warn("No se encontró el contenedor '#cromos-container' en el DOM.");
-        return;
-    }
-
-    // Limpia el contenedor antes de inyectar
-    contenedor.innerHTML = "";
-
-    // Mensaje en caso de que el arreglo aún esté vacío
-    if (cromosMundial.length === 0) {
-        contenedor.innerHTML = `
-            <div class="empty-album">
-                <p>El álbum está listo. Esperando que los desarrolladores agreguen sus cromos...</p>
-            </div>
-        `;
-        return;
-    }
-
-    // Recorrido estricto con .forEach() e inyección al DOM
-    cromosMundial.forEach((jugador) => {
-        const tarjetaHTML = `
-            <article class="cromo-card ${jugador.destacado ? 'destacado' : ''}" style="--bg-cromo: ${jugador.colorFondoHex};">
-                <header class="cromo-header">
-                    <span class="cromo-id">#${jugador.id}</span>
-                    <img src="${jugador.urlBandera}" alt="Bandera de ${jugador.pais}" class="cromo-flag">
-                </header>
-
-                <div class="cromo-image-container">
-                    <img src="${jugador.urlImagen}" alt="${jugador.nombre}" class="cromo-img" loading="lazy">
-                </div>
-
-                <div class="cromo-info">
-                    <h3 class="cromo-name">${jugador.nombre}</h3>
-                    <p class="cromo-country">${jugador.pais}</p>
-                    <span class="cromo-position">${jugador.posicion}</span>
-
-                    <div class="cromo-stats">
-                        <div class="stat">
-                            <span class="stat-num">${jugador.estadisticas.partidos}</span>
-                            <span class="stat-label">PJ</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-num">${jugador.estadisticas.goles}</span>
-                            <span class="stat-label">Goles</span>
-                        </div>
-                    </div>
-                </div>
-            </article>
-        `;
-
-        contenedor.innerHTML += tarjetaHTML;
-    });
-}
-
-// Ejecución al cargar el DOM
-document.addEventListener("DOMContentLoaded", () => {
-    renderizarAlbum();
-});
-
-// Función para renderizar cromos en la página principal (index.html)
-function renderizarJugadoresIndex() {
-    const contenedorIndex = document.getElementById("index-jugadores-container");
-    
-    // Si no estamos en index.html, finaliza suavemente
-    if (!contenedorIndex) return;
-
-    contenedorIndex.innerHTML = "";
-
-    if (cromosMundial.length === 0) {
-        contenedorIndex.innerHTML = `<p class="empty-msg">Próximamente se cargarán las estrellas del torneo...</p>`;
-        return;
-    }
-
-    // Filtra solo los destacados o toma los primeros 4 para la portada
-    const jugadoresParaMostrar = cromosMundial.filter(j => j.destacado).slice(0, 4);
-
-    // Si no hay destacados marcados, toma los primeros 4 del arreglo
-    const listaFinal = jugadoresParaMostrar.length > 0 ? jugadoresParaMostrar : cromosMundial.slice(0, 4);
-
-    listaFinal.forEach((jugador) => {
-        const tarjetaHTML = `
-            <article class="cromo-card ${jugador.destacado ? 'destacado' : ''}" style="--bg-cromo: ${jugador.colorFondoHex};">
-                <header class="cromo-header">
-                    <span class="cromo-id">#${jugador.id}</span>
-                    <img src="${jugador.urlBandera}" alt="Bandera de ${jugador.pais}" class="cromo-flag">
-                </header>
-
-                <div class="cromo-image-container">
-                    <img src="${jugador.urlImagen}" alt="${jugador.nombre}" class="cromo-img" loading="lazy">
-                </div>
-
-                <div class="cromo-info">
-                    <h3 class="cromo-name">${jugador.nombre}</h3>
-                    <p class="cromo-country">${jugador.pais}</p>
-                    <span class="cromo-position">${jugador.posicion}</span>
-                </div>
-            </article>
-        `;
-        contenedorIndex.innerHTML += tarjetaHTML;
-    });
-}
-
-// Escuchador de eventos unificado
-document.addEventListener("DOMContentLoaded", () => {
-    // Si existe el contenedor de la página del álbum completo
-    if (document.getElementById("cromos-container")) {
-        renderizarAlbum();
-    }
-    // Si existe el contenedor de la portada index.html
-    if (document.getElementById("index-jugadores-container")) {
-        renderizarJugadoresIndex();
-    }
-});
-
-cromosMundial.push(
+    }),
     crearJugador({
         id: 7,
         nombre: "Lionel Messi",
         pais: "Argentina",
         posicion: "Delantero",
-        urlImagen: "Imagenes/Jugadores/messi.jpg",
+        urlImagen: "imagenes/jugadores/messi.jpg",
         urlBandera: "https://flagcdn.com/w80/ar.png",
-        colorFondoHex: "#75AADB", // Celeste Argentina
+        colorFondoHex: "#75AADB",
         estadisticas: { goles: 13, partidos: 26 },
         destacado: true,
         curiosidad: "Máximo goleador histórico de Argentina y campeón del mundo en Qatar 2022."
@@ -272,9 +129,9 @@ cromosMundial.push(
         nombre: "Lamine Yamal",
         pais: "España",
         posicion: "Extremo",
-        urlImagen: "Imagenes/Jugadores/lamineYamale.jpg",
+        urlImagen: "imagenes/jugadores/lamineYamale.jpg",
         urlBandera: "https://flagcdn.com/w80/es.png",
-        colorFondoHex: "#AA151B", // Rojo España
+        colorFondoHex: "#AA151B",
         estadisticas: { goles: 3, partidos: 14 },
         destacado: true,
         curiosidad: "El jugador más joven en debutar y marcar con la selección absoluta de España."
@@ -284,9 +141,9 @@ cromosMundial.push(
         nombre: "Vozinha",
         pais: "Cabo Verde",
         posicion: "Portero",
-        urlImagen: "Imagenes/Jugadores/vozina.jpg",
+        urlImagen: "imagenes/jugadores/vozina.jpg",
         urlBandera: "https://flagcdn.com/w80/cv.png",
-        colorFondoHex: "#002B7F", // Azul Cabo Verde
+        colorFondoHex: "#002B7F",
         estadisticas: { goles: 0, partidos: 65 },
         destacado: false,
         curiosidad: "Guardameta histórico y referente del crecimiento futbolístico de Cabo Verde."
@@ -296,9 +153,9 @@ cromosMundial.push(
         nombre: "Federico Valverde",
         pais: "Uruguay",
         posicion: "Centrocampista",
-        urlImagen: "Imagenes/Jugadores/valverde.jpg",
+        urlImagen: "imagenes/jugadores/valverde.jpg",
         urlBandera: "https://flagcdn.com/w80/uy.png",
-        colorFondoHex: "#0038A8", // Azul Celeste Uruguay
+        colorFondoHex: "#0038A8",
         estadisticas: { goles: 7, partidos: 56 },
         destacado: true,
         curiosidad: "Conocido como 'El Pajarito', destaca por su gran despliegue físico y potente disparo lejano."
@@ -308,9 +165,9 @@ cromosMundial.push(
         nombre: "Pedri",
         pais: "España",
         posicion: "Centrocampista",
-        urlImagen: "Imagenes/Jugadores/pedri.jpg",
+        urlImagen: "imagenes/jugadores/pedri.jpg",
         urlBandera: "https://flagcdn.com/w80/es.png",
-        colorFondoHex: "#AA151B", // Rojo España
+        colorFondoHex: "#AA151B",
         estadisticas: { goles: 2, partidos: 24 },
         destacado: false,
         curiosidad: "Ganador del Golden Boy 2021 y motor de la creación de juego en el mediocampo español."
@@ -320,103 +177,116 @@ cromosMundial.push(
         nombre: "David Alaba",
         pais: "Austria",
         posicion: "Defensa",
-        urlImagen: "Imagenes/Jugadores/alaba.jpg",
+        urlImagen: "imagenes/jugadores/alaba.jpg",
         urlBandera: "https://flagcdn.com/w80/at.png",
-        colorFondoHex: "#ED2939", // Rojo Austria
+        colorFondoHex: "#ED2939",
         estadisticas: { goles: 15, partidos: 105 },
         destacado: false,
         curiosidad: "Capitán y figura polivalente que lidera el regreso de Austria a los grandes escenarios."
     })
 );
 
-// Función para calcular e imprimir el acumulado total de goles de TODOS los jugadores
-function calcularTotalGoles() {
-    // Suma los goles de todos los jugadores presentes en el arreglo global
-    const totalGoles = cromosMundial.reduce((acumulado, jugador) => acumulado + jugador.estadisticas.goles, 0);
+// 4. Función para actualizar el contador de progreso
+function actualizarContadorProgreso() {
+    const total = cromosMundial.length;
+    if (total === 0) return;
 
-    // Busca o crea el contenedor de estadísticas en el HTML
-    let contenedorStats = document.getElementById("total-goles-container");
-    
-    if (!contenedorStats) {
-        contenedorStats = document.createElement("div");
-        contenedorStats.id = "total-goles-container";
-        contenedorStats.className = "stats-summary-box";
+    const desbloqueados = cromosMundial.filter(j => j.desbloqueado).length;
+    const porcentaje = Math.round((desbloqueados / total) * 100);
 
-        const seccionAlbum = document.querySelector(".album-section, .featured-players-section");
-        if (seccionAlbum) {
-            seccionAlbum.insertBefore(contenedorStats, seccionAlbum.firstChild);
-        }
+    const txtProgreso = document.getElementById("progress-text");
+    const fillProgreso = document.getElementById("progress-bar-fill");
+
+    if (txtProgreso) {
+        txtProgreso.textContent = `${porcentaje}% (${desbloqueados} / ${total} cromos)`;
     }
 
-    // Inyección dinámica del total general
-    contenedorStats.innerHTML = `
-        <div class="summary-card">
-            ⚡ <span>Total acumulado de goles en el álbum:</span> <strong>${totalGoles} goles</strong>
-        </div>
-    `;
+    if (fillProgreso) {
+        fillProgreso.style.width = `${porcentaje}%`;
+    }
 }
 
-// 3. Modificación del evento inicial para ejecutar el cálculo automáticamente
-document.addEventListener("DOMContentLoaded", () => {
-    if (document.getElementById("cromos-container")) {
-        renderizarAlbum();
-    }
-    if (document.getElementById("index-jugadores-container")) {
-        renderizarJugadoresIndex();
-    }
-    
-    calcularTotalGoles();
-});
+// 5. Función para desbloquear cromo con animación de destello (flash)
+function desbloquearCromo(idJugador) {
+    const jugador = cromosMundial.find(j => j.id === idJugador);
+    if (!jugador) return;
 
-// Función genérica para renderizar una lista dada de jugadores
+    jugador.desbloqueado = true;
+
+    const tarjetaElemento = document.getElementById(`cromo-card-${idJugador}`);
+    if (tarjetaElemento) {
+        // Remover clase bloqueado y añadir destello
+        tarjetaElemento.classList.remove("cromo-bloqueado");
+        tarjetaElemento.classList.add("flash-effect");
+
+        // Quitar el botón de desbloquear
+        const btn = tarjetaElemento.querySelector(".btn-unlock");
+        if (btn) btn.remove();
+
+        // Limpiar la clase de animación después de 0.5s
+        setTimeout(() => {
+            tarjetaElemento.classList.remove("flash-effect");
+        }, 500);
+    }
+
+    // Actualizar el porcentaje global en tiempo real
+    actualizarContadorProgreso();
+}
+
+// 6. Renderizado de lista con soporte para estado bloqueado
 function renderizarListaJugadores(lista) {
     const contenedor = document.getElementById("cromos-container");
     if (!contenedor) return;
-
-    contenedor.innerHTML = "";
 
     if (lista.length === 0) {
         contenedor.innerHTML = `<p class="no-results">No se encontraron jugadores que coincidan con los filtros.</p>`;
         return;
     }
 
-    lista.forEach((jugador) => {
-        const tarjetaHTML = `
-            <article class="cromo-card ${jugador.destacado ? 'destacado' : ''}" style="--bg-cromo: ${jugador.colorFondoHex};">
-                <header class="cromo-header">
-                    <span class="cromo-id">#${jugador.id}</span>
-                    <img src="${jugador.urlBandera}" alt="Bandera de ${jugador.pais}" class="cromo-flag">
-                </header>
+    contenedor.innerHTML = lista.map((jugador) => `
+        <article 
+            id="cromo-card-${jugador.id}" 
+            class="cromo-card ${jugador.destacado ? 'destacado' : ''} ${!jugador.desbloqueado ? 'cromo-bloqueado' : ''}" 
+            style="--bg-cromo: ${jugador.colorFondoHex};"
+        >
+            ${!jugador.desbloqueado ? `
+                <button class="btn-unlock" onclick="desbloquearCromo(${jugador.id})">
+                    🔓 Desbloquear Cromo con Reto
+                </button>
+            ` : ''}
 
-                <div class="cromo-image-container">
-                    <img src="${jugador.urlImagen}" alt="${jugador.nombre}" class="cromo-img" loading="lazy">
-                </div>
+            <header class="cromo-header">
+                <span class="cromo-id">#${jugador.id}</span>
+                <img src="${jugador.urlBandera}" alt="Bandera de ${jugador.pais}" class="cromo-flag">
+            </header>
 
-                <div class="cromo-info">
-                    <h3 class="cromo-name">${jugador.nombre}</h3>
-                    <p class="cromo-country">${jugador.pais}</p>
-                    <span class="cromo-position">${jugador.posicion}</span>
+            <div class="cromo-image-container">
+                <img src="${jugador.urlImagen}" alt="${jugador.nombre}" class="cromo-img" loading="lazy">
+            </div>
 
-                    <div class="cromo-stats">
-                        <div class="stat">
-                            <span class="stat-num">${jugador.estadisticas.partidos}</span>
-                            <span class="stat-label">PJ</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-num">${jugador.estadisticas.goles}</span>
-                            <span class="stat-label">Goles</span>
-                        </div>
+            <div class="cromo-info">
+                <h3 class="cromo-name">${jugador.nombre}</h3>
+                <p class="cromo-country">${jugador.pais}</p>
+                <span class="cromo-position">${jugador.posicion}</span>
+
+                <div class="cromo-stats">
+                    <div class="stat">
+                        <span class="stat-num">${jugador.estadisticas.partidos}</span>
+                        <span class="stat-label">PJ</span>
                     </div>
-
-                    ${jugador.curiosidad ? `<p class="cromo-trivia">💡 <em>${jugador.curiosidad}</em></p>` : ''}
+                    <div class="stat">
+                        <span class="stat-num">${jugador.estadisticas.goles}</span>
+                        <span class="stat-label">Goles</span>
+                    </div>
                 </div>
-            </article>
-        `;
-        contenedor.innerHTML += tarjetaHTML;
-    });
+
+                ${jugador.curiosidad ? `<p class="cromo-trivia">💡 <em>${jugador.curiosidad}</em></p>` : ''}
+            </div>
+        </article>
+    `).join("");
 }
 
-// Función principal de filtrado combinando Búsqueda + Selección de País
+// 7. Filtrado combinado (Respetando el estado de desbloqueo)
 function aplicarFiltros() {
     const inputSearch = document.getElementById("search-input");
     const selectCountry = document.getElementById("country-select");
@@ -424,48 +294,31 @@ function aplicarFiltros() {
     const textoBusqueda = inputSearch ? inputSearch.value.toLowerCase().trim() : "";
     const paisSeleccionado = selectCountry ? selectCountry.value : "todos";
 
-    // Uso de función de orden superior .filter()
     const jugadoresFiltrados = cromosMundial.filter((jugador) => {
-        // Coincidencia por texto (nombre o posición)
         const coincideTexto = 
             jugador.nombre.toLowerCase().includes(textoBusqueda) ||
             jugador.posicion.toLowerCase().includes(textoBusqueda);
 
-        // Coincidencia por país
         const coincidePais = 
             paisSeleccionado === "todos" || jugador.pais === paisSeleccionado;
 
         return coincideTexto && coincidePais;
     });
 
-    // Renderiza el resultado filtrado
     renderizarListaJugadores(jugadoresFiltrados);
 }
 
-// Event Listeners e inicialización
+// 8. Inicialización al cargar la página
 document.addEventListener("DOMContentLoaded", () => {
-    // Renderizado inicial en la página del álbum
     if (document.getElementById("cromos-container")) {
         renderizarListaJugadores(cromosMundial);
 
-        // Escuchadores de eventos para filtrado en tiempo real
         const inputSearch = document.getElementById("search-input");
         const selectCountry = document.getElementById("country-select");
 
-        if (inputSearch) {
-            inputSearch.addEventListener("input", aplicarFiltros);
-        }
+        if (inputSearch) inputSearch.addEventListener("input", aplicarFiltros);
+        if (selectCountry) selectCountry.addEventListener("change", aplicarFiltros);
 
-        if (selectCountry) {
-            selectCountry.addEventListener("change", aplicarFiltros);
-        }
+        actualizarContadorProgreso();
     }
-
-    // Renderizado en portada (index.html)
-    if (document.getElementById("index-jugadores-container")) {
-        renderizarJugadoresIndex();
-    }
-
-    // Cálculo global de goles
-    calcularTotalGoles();
 });
