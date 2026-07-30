@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Álbum de Jugadores - Mundial 2026</title>
+    <link rel="stylesheet" href="jugadores.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo-container">
+            <span class="world-cup-text">FIFA WORLD CUP</span>
+            <span class="year-text">2026</span>
+        </div>
+        <p class="subtitle">ÁLBUM OFICIAL DE CROMOS</p>
+
+        <nav class="main-nav">
+            <a href="index.html" class="nav-link">🏠 Inicio</a>
+            <a href="Grupo_A/grupoA.html" class="nav-link">Grupo A</a>
+            <a href="Grupo_B/grupoB.html" class="nav-link">Grupo B</a>
+            <a href="Grupo_H/grupoH.html" class="nav-link">Grupo H</a>
+            <a href="Grupo_J/grupoJ.html" class="nav-link">Grupo J</a>
+            <a href="jugadores.html" class="nav-link active">⚽ Jugadores</a>
+            <a href="integrantes.html" class="nav-link">👥 Integrantes</a>
+        </nav>
+    </header>
+
+    <main class="container album-section">
+        <div class="section-title">
+            <h2>ÁLBUM DE CROMOS</h2>
+            <p>Colección oficial de jugadores del Mundial 2026</p>
+        </div>
+
+        <!-- CONTADOR INTERACTIVO DE GAMIFICACIÓN -->
+        <div class="progress-container">
+            <div class="progress-info">
+                <span>Progreso de Colección:</span>
+                <strong id="progress-text">0% (0 / 0 cromos)</strong>
+            </div>
+            <div class="progress-bar-bg">
+                <div id="progress-bar-fill" class="progress-bar-fill" style="width: 0%;"></div>
+            </div>
+        </div>
+
+        <!-- BARRA DE HERRAMIENTAS / FILTROS -->
+        <div class="filters-bar">
+            <div class="search-box">
+                <input 
+                    type="text" 
+                    id="search-input" 
+                    placeholder="Buscar por nombre o posición..." 
+                    autocomplete="off"
+                >
+            </div>
+            <div class="select-box">
+                <select id="country-select">
+                    <option value="todos">Todos los países</option>
+                    <option value="México">México</option>
+                    <option value="Corea del Sur">Corea del Sur</option>
+                    <option value="Canadá">Canadá</option>
+                    <option value="Suiza">Suiza</option>
+                    <option value="Qatar">Qatar</option>
+                    <option value="Argentina">Argentina</option>
+                    <option value="España">España</option>
+                    <option value="Cabo Verde">Cabo Verde</option>
+                    <option value="Uruguay">Uruguay</option>
+                    <option value="Austria">Austria</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- CONTENEDOR DE CROMOS -->
+        <div id="cromos-container" class="cromos-grid"></div>
+    </main>
+
+    <footer class="footer">
+        <p>Desarrollado para el Taller Mundialista 2026 | Creado por <span>Gabriel Endara</span></p>
+    </footer>
+
+    <script src="jugadores.js"></script>
+</body>
+</html>
